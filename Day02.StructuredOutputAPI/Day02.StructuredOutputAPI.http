@@ -1,0 +1,6 @@
+@Day02.StructuredOutputAPI_HostAddress = http://localhost:5114
+
+GET {{Day02.StructuredOutputAPI_HostAddress}}/swagger/
+Accept: application/json
+
+###
