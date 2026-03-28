@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day02.StructuredOutputAPI",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day03.EmbeddingsAndSearch", "Day03.EmbeddingsAndSearch\Day03.EmbeddingsAndSearch.csproj", "{DE38FABB-87C6-45FE-A6F1-5EC040D3C385}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day04.RAGPipeline", "Day04.RAGPipeline\Day04.RAGPipeline.csproj", "{BC775EBA-37F4-4922-BADE-923D3DC9FEB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DE38FABB-87C6-45FE-A6F1-5EC040D3C385}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE38FABB-87C6-45FE-A6F1-5EC040D3C385}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE38FABB-87C6-45FE-A6F1-5EC040D3C385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC775EBA-37F4-4922-BADE-923D3DC9FEB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC775EBA-37F4-4922-BADE-923D3DC9FEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC775EBA-37F4-4922-BADE-923D3DC9FEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC775EBA-37F4-4922-BADE-923D3DC9FEB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
