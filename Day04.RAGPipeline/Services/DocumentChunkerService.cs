@@ -60,10 +60,57 @@ public class DocumentChunkerService
     //    // Now we know total chunks — update each
     //    var total = chunks.Count;
     //    return chunks.Select(c => c with { TotalChunks = total }).ToList();
+    ////}
+    //public List<DocumentChunk> ChunkDocument(string text, string fileName)
+    //{
+    //    // Clean up whitespace
+    //    text = CleanText(text);
+
+    //    var chunks = new List<DocumentChunk>();
+    //    int position = 0;
+    //    int index = 0;
+
+    //    while (position < text.Length)
+    //    {
+    //        // Calculate end position for this chunk
+    //        int end = Math.Min(position + _chunkSize, text.Length);
+
+    //        // Try to end at a sentence boundary
+    //        if (end < text.Length)
+    //            end = FindNaturalBreak(text, end);
+
+    //        // Safety: end must always be greater than position
+    //        if (end <= position)
+    //            end = Math.Min(position + _chunkSize, text.Length);
+
+    //        var chunkText = text[position..end].Trim();
+
+    //        if (!string.IsNullOrWhiteSpace(chunkText))
+    //        {
+    //            chunks.Add(new DocumentChunk
+    //            {
+    //                Text = chunkText,
+    //                FileName = fileName,
+    //                ChunkIndex = index++,
+    //                TotalChunks = 0
+    //            });
+    //        }
+
+    //        // ✅ FIX: ensure position never goes negative
+    //        int nextPosition = end - _overlapSize;
+    //        position = Math.Max(nextPosition, end - (end - position) / 2);
+
+    //        // Safety: always move forward at least 1 character
+    //        if (position >= end) position = end;
+    //    }
+
+    //    // Update total chunks count
+    //    var total = chunks.Count;
+    //    return chunks.Select(c => c with { TotalChunks = total }).ToList();
     //}
+
     public List<DocumentChunk> ChunkDocument(string text, string fileName)
     {
-        // Clean up whitespace
         text = CleanText(text);
 
         var chunks = new List<DocumentChunk>();
@@ -96,15 +143,17 @@ public class DocumentChunkerService
                 });
             }
 
-            // ✅ FIX: ensure position never goes negative
-            int nextPosition = end - _overlapSize;
-            position = Math.Max(nextPosition, end - (end - position) / 2);
+            // ✅ KEY FIX: if we reached the end of the document — stop immediately
+            if (end >= text.Length) break;
 
-            // Safety: always move forward at least 1 character
-            if (position >= end) position = end;
+            // Move forward with overlap for mid-document chunks only
+            position = end - _overlapSize;
+
+            // Safety: never go backwards past where we started this chunk
+            if (position <= 0 || position >= end)
+                position = end;
         }
 
-        // Update total chunks count
         var total = chunks.Count;
         return chunks.Select(c => c with { TotalChunks = total }).ToList();
     }
